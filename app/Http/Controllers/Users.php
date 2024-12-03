@@ -4,18 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class Users extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        //
+    }
 
-        return view('main', [
-            'title' => 'Dashboard',
+    public function profile()
+    {
+
+        return view('pages.profile.index', [
+            'title' => 'Profile',
         ]);
     }
+
     /**
      * Show the form for creating a new resource.
      */

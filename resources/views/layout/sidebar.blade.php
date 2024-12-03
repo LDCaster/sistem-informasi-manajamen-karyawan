@@ -93,7 +93,7 @@
                             <ul x-cloak="" x-show="activeDropdown === 'manajemen_karyawan'" x-collapse=""
                                 class="sub-menu text-gray-500">
                                 <li>
-                                    <a href="apps-invoice-list.html">Daftar Karyawan</a>
+                                    <a href="{{ route('karyawan.index') }}">Daftar Karyawan</a>
                                 </li>
                                 <li>
                                     <a href="apps-invoice-preview.html">Tambah Karyawan</a>
@@ -101,7 +101,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="apps-calendar.html" class="group">
+                            <a href="{{ route('kontrak-kerja.index') }}" class="group">
                                 <div class="flex items-center">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -146,7 +146,7 @@
                             <ul x-cloak="" x-show="activeDropdown === 'pelatihan_karyawan'" x-collapse=""
                                 class="sub-menu text-gray-500">
                                 <li>
-                                    <a href="apps-invoice-list.html">Daftar Pelatihan</a>
+                                    <a href="{{ route('pelatihan-karyawan.index') }}">Daftar Pelatihan</a>
                                 </li>
                                 <li>
                                     <a href="apps-invoice-preview.html">Tambah Pelatihan</a>
@@ -154,7 +154,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="apps-calendar.html" class="group">
+                            <a href="{{ route('resignasi-karyawan.index') }}" class="group">
                                 <div class="flex items-center">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class PelatihanKaryawan extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -12,10 +12,11 @@ class DashboardController extends Controller
     public function index()
     {
 
-        return view('main', [
-            'title' => 'Dashboard',
+        return view('pages.pelatihan_karyawan.daftar_pelatihan', [
+            'title' => 'Daftar Pelatihan Karyawan',
         ]);
     }
+
     /**
      * Show the form for creating a new resource.
      */
