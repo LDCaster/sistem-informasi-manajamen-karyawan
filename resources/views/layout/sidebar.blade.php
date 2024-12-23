@@ -4,7 +4,7 @@
         <div class="h-full bg-white dark:bg-[#0e1726]">
             <div class="flex items-center justify-between px-4 py-3">
                 <a href="index.html" class="main-logo flex shrink-0 items-center">
-                    <img class="ml-[5px] w-8 flex-none" src="assets/images/logo.png" alt="image">
+                    <img class="ml-[5px] w-8 flex-none" src="{{ asset('assets/images/logo.png') }}" alt="image">
                     <span
                         class="align-middle text-2xl font-semibold ltr:ml-1.5 rtl:mr-1.5 dark:text-white-light lg:inline">SIMK</span>
                 </a>
@@ -96,7 +96,7 @@
                                     <a href="{{ route('karyawan.index') }}">Daftar Karyawan</a>
                                 </li>
                                 <li>
-                                    <a href="apps-invoice-preview.html">Tambah Karyawan</a>
+                                    <a href="{{ route('karyawan.create') }}">Tambah Karyawan</a>
                                 </li>
                             </ul>
                         </li>
@@ -149,7 +149,7 @@
                                     <a href="{{ route('pelatihan-karyawan.index') }}">Daftar Pelatihan</a>
                                 </li>
                                 <li>
-                                    <a href="apps-invoice-preview.html">Tambah Pelatihan</a>
+                                    <a href="{{ route('pelatihan-karyawan.create') }}">Tambah Pelatihan</a>
                                 </li>
                             </ul>
                         </li>
@@ -242,7 +242,7 @@
                             <ul x-cloak="" x-show="activeDropdown === 'pengaturan_sistem'" x-collapse=""
                                 class="sub-menu text-gray-500">
                                 <li>
-                                    <a href="apps-invoice-list.html">Manajemen User</a>
+                                    <a href="{{ route('users.index') }}">Manajemen User</a>
                                 </li>
                                 <li>
                                     <a href="apps-invoice-preview.html">Backup & Restore Data</a>

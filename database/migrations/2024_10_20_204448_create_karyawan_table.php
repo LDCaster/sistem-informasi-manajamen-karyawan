@@ -24,7 +24,6 @@ return new class extends Migration
             $table->enum('jenis_kelamin', ['L', 'P']);
             $table->string('pendidikan', 50);
             $table->enum('status_perkawinan', ['Kawin', 'Belum Kawin', 'Cerai Hidup', 'Cerai Mati', 'Menikah']);
-            $table->enum('role', ['admin', 'hrd', 'karyawan'])->default('karyawan');
             $table->timestamps();
         });
     }

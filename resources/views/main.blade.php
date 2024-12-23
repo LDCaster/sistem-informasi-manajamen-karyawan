@@ -18,7 +18,9 @@
     <script defer src="{{ asset('assets/js/popper.min.js') }}"></script>
     <script defer src="{{ asset('assets/js/tippy-bundle.umd.min.js') }}"></script>
     <script defer src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
-
+    <script defer="" src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/nice-select2.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/flatpickr.min.css') }}">
 </head>
 
 <body x-data="main" class="relative overflow-x-hidden font-nunito text-sm font-normal antialiased"
@@ -78,6 +80,8 @@
     <script defer src="{{ asset('assets/js/alpine.min.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
     <script defer src="{{ asset('assets/js/apexcharts.js') }}"></script>
+    <script src="{{ asset('assets/js/nice-select2.js') }}"></script>
+    <script src="{{ asset('assets/js/flatpickr.js') }}"></script>
 
     <script>
         document.addEventListener('alpine:init', () => {
@@ -153,6 +157,50 @@
             }));
 
         });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(e) {
+            // default
+            var els = document.querySelectorAll(".selectize");
+            els.forEach(function(select) {
+                NiceSelect.bind(select);
+            });
+        });
+    </script>
+
+    <!-- script -->
+    <script>
+        document.addEventListener("alpine:init", () => {
+            Alpine.data("form", () => ({
+                date1: '2022-07-05',
+                init() {
+                    flatpickr(document.getElementById('basic'), {
+                        dateFormat: 'Y-m-d',
+                        defaultDate: this.date1,
+                    })
+                }
+            }));
+        });
+    </script>
+    <script>
+        //alerts
+        Alpine.data('form', () => ({
+            // highlightjs
+            codeArr: [],
+            toggleCode(name) {
+                if (this.codeArr.includes(name)) {
+                    this.codeArr = this.codeArr.filter((d) => d != name);
+                } else {
+                    this.codeArr.push(name);
+
+                    setTimeout(() => {
+                        document.querySelectorAll('pre.code').forEach((el) => {
+                            hljs.highlightElement(el);
+                        });
+                    });
+                }
+            },
+        }));
     </script>
 </body>
 

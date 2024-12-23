@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('id_karyawan')->constrained('karyawan')->onDelete('cascade');
             $table->text('nama_pelatihan');
             $table->date('tanggal_pelatihan');
+            $table->string('file_pelatihan')->nullable(); // Add this line to store file path
             $table->timestamps();
         });
     }

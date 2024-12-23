@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('id_karyawan')->constrained('karyawan')->onDelete('cascade');
             $table->date('tanggal_catatan');
             $table->text('kasus_catatan');
+            $table->text('keterangan_catatan')->nullable();
             $table->timestamps();
         });
     }

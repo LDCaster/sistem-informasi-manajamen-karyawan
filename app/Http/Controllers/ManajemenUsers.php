@@ -2,20 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PelatihanKaryawan as ModelsPelatihanKaryawan;
 use Illuminate\Http\Request;
 
-class PelatihanKaryawan extends Controller
+class ManajemenUsers extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $pelatihankaryawan = ModelsPelatihanKaryawan::with('karyawan')->get();
-        return view('pages.pelatihan_karyawan.daftar_pelatihan', [
-            'title' => 'Daftar Pelatihan Karyawan',
-            'pelatihankaryawan' => $pelatihankaryawan,  // Pass the pelatihankaryawan data to the view
+
+        return view('pages.manajemen_users.index', [
+            'title' => 'Daftar Users',
         ]);
     }
 
@@ -24,9 +22,7 @@ class PelatihanKaryawan extends Controller
      */
     public function create()
     {
-        return view('pages.pelatihan_karyawan.tambah_pelatihan', [
-            'title' => 'Tambah Pelatihan Karyawan',
-        ]);
+        //
     }
 
     /**

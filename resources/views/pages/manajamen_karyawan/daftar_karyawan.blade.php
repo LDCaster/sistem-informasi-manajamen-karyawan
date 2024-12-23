@@ -5,18 +5,38 @@
     <div x-data="exportTable">
         <div class="panel flex items-center overflow-x-auto whitespace-nowrap p-3 text-primary">
             <div class="rounded-full bg-primary p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3">
-                <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-                    class="h-3.5 w-3.5">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
-                        d="M19.0001 9.7041V9C19.0001 5.13401 15.8661 2 12.0001 2C8.13407 2 5.00006 5.13401 5.00006 9V9.7041C5.00006 10.5491 4.74995 11.3752 4.28123 12.0783L3.13263 13.8012C2.08349 15.3749 2.88442 17.5139 4.70913 18.0116C9.48258 19.3134 14.5175 19.3134 19.291 18.0116C21.1157 17.5139 21.9166 15.3749 20.8675 13.8012L19.7189 12.0783C19.2502 11.3752 19.0001 10.5491 19.0001 9.7041Z"
-                        stroke="currentColor" stroke-width="1.5"></path>
-                    <path opacity="0.5" d="M7.5 19C8.15503 20.7478 9.92246 22 12 22C14.0775 22 15.845 20.7478 16.5 19"
-                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                        d="M15.5 7.5C15.5 9.433 13.933 11 12 11C10.067 11 8.5 9.433 8.5 7.5C8.5 5.567 10.067 4 12 4C13.933 4 15.5 5.567 15.5 7.5Z"
+                        fill="currentColor" />
+                    <path opacity="0.5"
+                        d="M19.5 7.5C19.5 8.88071 18.3807 10 17 10C15.6193 10 14.5 8.88071 14.5 7.5C14.5 6.11929 15.6193 5 17 5C18.3807 5 19.5 6.11929 19.5 7.5Z"
+                        fill="currentColor" />
+                    <path opacity="0.5"
+                        d="M4.5 7.5C4.5 8.88071 5.61929 10 7 10C8.38071 10 9.5 8.88071 9.5 7.5C9.5 6.11929 8.38071 5 7 5C5.61929 5 4.5 6.11929 4.5 7.5Z"
+                        fill="currentColor" />
+                    <path
+                        d="M18 16.5C18 18.433 15.3137 20 12 20C8.68629 20 6 18.433 6 16.5C6 14.567 8.68629 13 12 13C15.3137 13 18 14.567 18 16.5Z"
+                        fill="currentColor" />
+                    <path opacity="0.5"
+                        d="M22 16.5C22 17.8807 20.2091 19 18 19C15.7909 19 14 17.8807 14 16.5C14 15.1193 15.7909 14 18 14C20.2091 14 22 15.1193 22 16.5Z"
+                        fill="currentColor" />
+                    <path opacity="0.5"
+                        d="M2 16.5C2 17.8807 3.79086 19 6 19C8.20914 19 10 17.8807 10 16.5C10 15.1193 8.20914 14 6 14C3.79086 14 2 15.1193 2 16.5Z"
+                        fill="currentColor" />
                 </svg>
+
             </div>
-            <span class="ltr:mr-3 rtl:ml-3">Documentation: </span>
+            {{-- <span class="ltr:mr-3 rtl:ml-3">Documentation: </span> --}}
             <h5 class="text-lg font-semibold dark:text-white-light">Data Karyawan</h5>
         </div>
+        {{-- <div class="panel"> --}}
+        @if (session('success'))
+            <!-- danger -->
+            <div class="flex items-center p-3.5 rounded text-success bg-success-light dark:bg-success-dark-light">
+                {{ session('success') }}
+            </div>
+        @endif
         <div class="panel mt-6">
             <div class="md:absolute md:top-5 ltr:md:left-5 rtl:md:right-5">
                 {{-- <div class="mb-5 flex flex-wrap items-center">
@@ -98,22 +118,36 @@
 
             Alpine.data('exportTable', () => ({
                 datatable: null,
+                karyawans: @json($karyawans), // Masukkan data karyawan ke dalam script
                 init() {
+                    // Membuat data untuk tabel dari data karyawan
+                    const dataKaryawan = this.karyawans.map(karyawan => {
+                        // Ambil data pekerjaan karyawan pertama
+                        const pekerjaan = karyawan.pekerjaan_karyawan[0] || {};
+
+                        return [
+                            '', // Kolom Action (nanti bisa ditambahkan tombol Edit/Delete)
+                            karyawan.id, // No
+                            karyawan.nik, // NIK
+                            karyawan.nip, // NIP
+                            karyawan.nama, // Nama
+                            pekerjaan.sbu || '', // SBU (Dari data pekerjaan)
+                            pekerjaan.bagian || '', // Bagian (Dari data pekerjaan)
+                            pekerjaan.departemen || '', // Departemen (Dari data pekerjaan)
+                            pekerjaan.status_karyawan ||
+                            '', // Status Karyawan (Dari data pekerjaan)
+                            pekerjaan.tanggal_masuk ||
+                            '', // Tanggal Masuk (Dari data pekerjaan)
+                        ];
+                    });
+
                     this.datatable = new simpleDatatables.DataTable('#myTable', {
                         data: {
                             headings: ['<div class="text-center">Action</div>', 'No', 'NIK',
-                                'NIP', 'Nama', 'SBU',
-                                'Bagian', 'Dept', 'Status Karyawan', 'Tanggal Masuk'
+                                'NIP', 'Nama', 'SBU', 'Bagian', 'Dept', 'Status Karyawan',
+                                'Tanggal Masuk'
                             ],
-                            data: [
-                                ['', 1, '1234567890123456', '198764321', 'Caroline Jensen',
-                                    'POLARAX', 'Finance', 'Accounting', 'AKTIF',
-                                    '2004-05-28'
-                                ],
-                                ['', 2, '6543210987654321', '123457890', 'Celeste Grant',
-                                    'MANGLO', 'HR', 'Recruitment', 'NONAKTIF', '1989-11-19'
-                                ],
-                            ],
+                            data: dataKaryawan, // Menampilkan data karyawan
                         },
                         perPage: 10,
                         perPageSelect: [10, 20, 30, 50, 100],
@@ -147,9 +181,9 @@
                             {
                                 select: 8, // Kolom untuk Status Karyawan
                                 render: (data, cell, row) => {
-                                    const color = data === 'AKTIF' ? 'success' :
+                                    const color = data === 'Aktif' ? 'success' :
                                         'danger';
-                                    return `<span class="badge badge-outline-${color}">${data}</span>`;
+                                    return `<span class="badge badge-outline-${color}" style="text-align:center; display:block;">${data}</span>`;
                                 },
                                 sortable: false,
                             },
@@ -162,37 +196,9 @@
                         ],
                         firstLast: true,
                         firstText: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M13 19L7 12L13 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path opacity="0.5" d="M16.9998 19L10.9998 12L16.9998 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>',
-                        lastText: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M11 19L17 12L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path opacity="0.5" d="M6.99976 19L12.9998 12L6.99976 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>',
-                        prevText: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M15 5L9 12L15 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>',
-                        nextText: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>',
-                        labels: {
-                            perPage: '{select}',
-                        },
-                        layout: {
-                            top: '{search}',
-                            bottom: '{info}{select}{pager}',
-                        },
+                        lastText: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M11 5L17 12L11 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path opacity="0.5" d="M7 5L13 12L7 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>',
                     });
                 },
-
-                exportTable(eType) {
-                    var data = {
-                        type: eType,
-                        filename: 'table',
-                        download: true,
-                    };
-
-                    if (data.type === 'csv') {
-                        data.lineDelimiter = '\n';
-                        data.columnDelimiter = ';';
-                    }
-                    this.datatable.export(data);
-                },
-
-                printTable() {
-                    this.datatable.print();
-                },
-
                 formatDate(date) {
                     if (date) {
                         const dt = new Date(date);

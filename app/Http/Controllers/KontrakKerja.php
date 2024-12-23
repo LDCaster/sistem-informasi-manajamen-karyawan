@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KontrakKerja as ModelsKontrakKerja;
 use Illuminate\Http\Request;
 
 class KontrakKerja extends Controller
@@ -11,9 +12,10 @@ class KontrakKerja extends Controller
      */
     public function index()
     {
-
+        $kontrakkerja = ModelsKontrakKerja::with('karyawan')->get();
         return view('pages.kontrak_kerja.index', [
             'title' => 'Kontrak Kerja - Karyawan',
+            'kontrakkerja' => $kontrakkerja,  // Pass the kontrakkerja data to the view
         ]);
     }
     /**
