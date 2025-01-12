@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KontrakKerja;
 use App\Http\Controllers\ManajemenKaryawan;
@@ -9,7 +10,8 @@ use App\Http\Controllers\ResignasiKaryawan;
 use App\Http\Controllers\Users;
 use Illuminate\Support\Facades\Route;
 
-Route::resource('/', DashboardController::class);
+Route::get('/', [AuthController::class, 'login']);
+Route::resource('/dashboard', DashboardController::class);
 Route::resource('/karyawan', ManajemenKaryawan::class);
 Route::resource('/kontrak-kerja', KontrakKerja::class);
 Route::resource('/pelatihan-karyawan', PelatihanKaryawan::class);

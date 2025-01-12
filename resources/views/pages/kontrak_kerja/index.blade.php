@@ -105,7 +105,7 @@
 
                         return [
                             '', // Kolom Action
-                            kontrak.id, // No
+                            kontrak.id_karyawan, // idkaryawan
                             karyawan.nik || '', // NIK
                             karyawan.nip || '', // NIP
                             karyawan.nama || '', // Nama

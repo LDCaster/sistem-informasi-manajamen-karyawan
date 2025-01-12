@@ -97,30 +97,26 @@
 
             Alpine.data('exportTable', () => ({
                 datatable: null,
+                resignasikaryawan: @json($resignasikaryawan),
                 init() {
+                    // Map the pelatihankaryawan data into a format suitable for the table
+                    const dataResignasi = this.resignasikaryawan.map(resignasi => {
+                        const karyawan = resignasi.karyawan || {};
+                        console.log('Keterangan Keluar:', resignasi.keterangan_keluar);
+                        return [
+                            '', // Kolom Action
+                            resignasi.id, // No
+                            karyawan.nama || 'N/A',
+                            resignasi.tanggal_keluar || 'N/A',
+                            resignasi.keterangan_keluar || 'Tidak Ada Keterangan',
+                        ];
+                    });
                     this.datatable = new simpleDatatables.DataTable('#myTable', {
                         data: {
                             headings: ['<div class="text-center">Action</div>', 'No', 'Nama',
-                                'Dept', 'Tanggal Keluar', 'Alasan'
+                                'Tanggal Keluar', 'Keterangan'
                             ],
-                            data: [
-                                [
-                                    '', // Action
-                                    1, // No
-                                    'Caroline Jensen', // Nama
-                                    'Finance', // Dept
-                                    '2024-01-01', // Tanggal Keluar
-                                    'Pensiun' // Alasan
-                                ],
-                                [
-                                    '', // Action
-                                    2, // No
-                                    'Celeste Grant', // Nama
-                                    'HR', // Dept
-                                    '2023-12-01', // Tanggal Keluar
-                                    'Mengundurkan Diri' // Alasan
-                                ],
-                            ],
+                            data: dataResignasi,
                         },
                         perPage: 10,
                         perPageSelect: [10, 20, 30, 50, 100],
@@ -152,7 +148,7 @@
                                 },
                             },
                             {
-                                select: 4,
+                                select: 3,
                                 render: (data, cell, row) => {
                                     return this.formatDate(data);
                                 },
@@ -171,20 +167,6 @@
                             bottom: '{info}{select}{pager}',
                         },
                     });
-                },
-
-                exportTable(eType) {
-                    var data = {
-                        type: eType,
-                        filename: 'table',
-                        download: true,
-                    };
-
-                    if (data.type === 'csv') {
-                        data.lineDelimiter = '\n';
-                        data.columnDelimiter = ';';
-                    }
-                    this.datatable.export(data);
                 },
 
                 printTable() {

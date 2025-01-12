@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ResignasiKaryawan as ModelsResignasiKaryawan;
+
 use Illuminate\Http\Request;
 
 class ResignasiKaryawan extends Controller
@@ -11,9 +13,11 @@ class ResignasiKaryawan extends Controller
      */
     public function index()
     {
+        $resignasikaryawan = ModelsResignasiKaryawan::with('karyawan')->get();
 
         return view('pages.resignasi_karyawan.index', [
             'title' => 'Daftar Resignasi Karyawan',
+            'resignasikaryawan' => $resignasikaryawan,
         ]);
     }
 

@@ -102,7 +102,7 @@
                     // Map the pelatihankaryawan data into a format suitable for the table
                     const dataPelatihan = this.pelatihankaryawan.map(pelatihan => {
                         const karyawan = pelatihan.karyawan || {};
-                        console.log(pelatihan);
+                        console.log(pelatihan.karyawan);
                         return [
                             '', // Kolom Action
                             pelatihan.id, // No

@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call(KaryawanSeeder::class);
         $this->call(PekerjaanKaryawanSeeder::class);
+        $this->call(ResignasiKaryawanSeeder::class);
     }
 }
