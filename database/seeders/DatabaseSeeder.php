@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         $this->call(KaryawanSeeder::class);
+        $this->call(UsersSeeder::class);
         $this->call(PekerjaanKaryawanSeeder::class);
         $this->call(ResignasiKaryawanSeeder::class);
     }

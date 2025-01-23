@@ -95,9 +95,11 @@
                                 <li>
                                     <a href="{{ route('karyawan.index') }}">Daftar Karyawan</a>
                                 </li>
-                                <li>
-                                    <a href="{{ route('karyawan.create') }}">Tambah Karyawan</a>
-                                </li>
+                                @if (Auth::user()->role == 'admin' || Auth::user()->role == 'hrd')
+                                    <li>
+                                        <a href="{{ route('karyawan.create') }}">Tambah Karyawan</a>
+                                    </li>
+                                @endif
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -148,9 +150,11 @@
                                 <li>
                                     <a href="{{ route('pelatihan-karyawan.index') }}">Daftar Pelatihan</a>
                                 </li>
-                                <li>
-                                    <a href="{{ route('pelatihan-karyawan.create') }}">Tambah Pelatihan</a>
-                                </li>
+                                @if (Auth::user()->role == 'admin' || Auth::user()->role == 'hrd')
+                                    <li>
+                                        <a href="{{ route('pelatihan-karyawan.create') }}">Tambah Pelatihan</a>
+                                    </li>
+                                @endif
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -168,89 +172,93 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="menu nav-item">
-                            <button type="button" class="nav-link group"
-                                :class="{ 'active': activeDropdown === 'laporan_statistik' }"
-                                @click="activeDropdown === 'laporan_statistik' ? activeDropdown = null : activeDropdown = 'laporan_statistik'">
-                                <div class="flex items-center">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M3.46447 3.46447C2 4.92893 2 7.28595 2 12C2 16.714 2 19.0711 3.46447 20.5355C4.92893 22 7.28595 22 12 22C16.714 22 19.0711 22 20.5355 20.5355C22 19.0711 22 16.714 22 12C22 7.28595 22 4.92893 20.5355 3.46447C19.0711 2 16.714 2 12 2C7.28595 2 4.92893 2 3.46447 3.46447ZM17 8.25C17.4142 8.25 17.75 8.58579 17.75 9V18C17.75 18.4142 17.4142 18.75 17 18.75C16.5858 18.75 16.25 18.4142 16.25 18V9C16.25 8.58579 16.5858 8.25 17 8.25ZM12.75 12C12.75 11.5858 12.4142 11.25 12 11.25C11.5858 11.25 11.25 11.5858 11.25 12V18C11.25 18.4142 11.5858 18.75 12 18.75C12.4142 18.75 12.75 18.4142 12.75 18V12ZM7 14.25C7.41421 14.25 7.75 14.5858 7.75 15V18C7.75 18.4142 7.41421 18.75 7 18.75C6.58579 18.75 6.25 18.4142 6.25 18V15C6.25 14.5858 6.58579 14.25 7 14.25Z "
-                                            fill="currentColor" />
-                                    </svg>
-                                    <span
-                                        class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Laporan
-                                        & Statistik</span>
-                                </div>
-                                <div class="rtl:rotate-180"
-                                    :class="{ '!rotate-90': activeDropdown === 'laporan_statistik' }">
-                                    <svg width="16" height="16" viewbox="0 0 24 24" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5"
-                                            stroke-linecap="round" stroke-linejoin="round"></path>
-                                    </svg>
-                                </div>
-                            </button>
-                            <ul x-cloak="" x-show="activeDropdown === 'laporan_statistik'" x-collapse=""
-                                class="sub-menu text-gray-500">
-                                <li>
-                                    <a href="apps-invoice-list.html">Laporan Karyawan</a>
-                                </li>
-                                <li>
-                                    <a href="apps-invoice-preview.html">Laporan Pelatihan</a>
-                                </li>
-                                <li>
-                                    <a href="apps-invoice-preview.html">Statistik Karyawan</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="menu nav-item">
-                            <button type="button" class="nav-link group"
-                                :class="{ 'active': activeDropdown === 'pengaturan_sistem' }"
-                                @click="activeDropdown === 'pengaturan_sistem' ? activeDropdown = null : activeDropdown = 'pengaturan_sistem'">
-                                <div class="flex items-center">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M13 15.4C13 13.3258 13 12.2887 13.659 11.6444C14.318 11 15.3787 11 17.5 11C19.6213 11 20.682 11 21.341 11.6444C22 12.2887 22 13.3258 22 15.4V17.6C22 19.6742 22 20.7113 21.341 21.3556C20.682 22 19.6213 22 17.5 22C15.3787 22 14.318 22 13.659 21.3556C13 20.7113 13 19.6742 13 17.6V15.4Z"
-                                            fill="currentColor" />
-                                        <path
-                                            d="M2 8.6C2 10.6742 2 11.7113 2.65901 12.3556C3.31802 13 4.37868 13 6.5 13C8.62132 13 9.68198 13 10.341 12.3556C11 11.7113 11 10.6742 11 8.6V6.4C11 4.32582 11 3.28873 10.341 2.64437C9.68198 2 8.62132 2 6.5 2C4.37868 2 3.31802 2 2.65901 2.64437C2 3.28873 2 4.32582 2 6.4V8.6Z"
-                                            fill="currentColor" />
-                                        <path
-                                            d="M13 5.5C13 4.4128 13 3.8692 13.1713 3.44041C13.3996 2.86867 13.8376 2.41443 14.389 2.17761C14.8024 2 15.3266 2 16.375 2H18.625C19.6734 2 20.1976 2 20.611 2.17761C21.1624 2.41443 21.6004 2.86867 21.8287 3.44041C22 3.8692 22 4.4128 22 5.5C22 6.5872 22 7.1308 21.8287 7.55959C21.6004 8.13133 21.1624 8.58557 20.611 8.82239C20.1976 9 19.6734 9 18.625 9H16.375C15.3266 9 14.8024 9 14.389 8.82239C13.8376 8.58557 13.3996 8.13133 13.1713 7.55959C13 7.1308 13 6.5872 13 5.5Z"
-                                            fill="currentColor" />
-                                        <path
-                                            d="M2 18.5C2 19.5872 2 20.1308 2.17127 20.5596C2.39963 21.1313 2.83765 21.5856 3.38896 21.8224C3.80245 22 4.32663 22 5.375 22H7.625C8.67337 22 9.19755 22 9.61104 21.8224C10.1624 21.5856 10.6004 21.1313 10.8287 20.5596C11 20.1308 11 19.5872 11 18.5C11 17.4128 11 16.8692 10.8287 16.4404C10.6004 15.8687 10.1624 15.4144 9.61104 15.1776C9.19755 15 8.67337 15 7.625 15H5.375C4.32663 15 3.80245 15 3.38896 15.1776C2.83765 15.4144 2.39963 15.8687 2.17127 16.4404C2 16.8692 2 17.4128 2 18.5Z"
-                                            fill="currentColor" />
-                                    </svg>
+                        @if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff')
+                            <li class="menu nav-item">
+                                <button type="button" class="nav-link group"
+                                    :class="{ 'active': activeDropdown === 'laporan_statistik' }"
+                                    @click="activeDropdown === 'laporan_statistik' ? activeDropdown = null : activeDropdown = 'laporan_statistik'">
+                                    <div class="flex items-center">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M3.46447 3.46447C2 4.92893 2 7.28595 2 12C2 16.714 2 19.0711 3.46447 20.5355C4.92893 22 7.28595 22 12 22C16.714 22 19.0711 22 20.5355 20.5355C22 19.0711 22 16.714 22 12C22 7.28595 22 4.92893 20.5355 3.46447C19.0711 2 16.714 2 12 2C7.28595 2 4.92893 2 3.46447 3.46447ZM17 8.25C17.4142 8.25 17.75 8.58579 17.75 9V18C17.75 18.4142 17.4142 18.75 17 18.75C16.5858 18.75 16.25 18.4142 16.25 18V9C16.25 8.58579 16.5858 8.25 17 8.25ZM12.75 12C12.75 11.5858 12.4142 11.25 12 11.25C11.5858 11.25 11.25 11.5858 11.25 12V18C11.25 18.4142 11.5858 18.75 12 18.75C12.4142 18.75 12.75 18.4142 12.75 18V12ZM7 14.25C7.41421 14.25 7.75 14.5858 7.75 15V18C7.75 18.4142 7.41421 18.75 7 18.75C6.58579 18.75 6.25 18.4142 6.25 18V15C6.25 14.5858 6.58579 14.25 7 14.25Z "
+                                                fill="currentColor" />
+                                        </svg>
+                                        <span
+                                            class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Laporan
+                                            & Statistik</span>
+                                    </div>
+                                    <div class="rtl:rotate-180"
+                                        :class="{ '!rotate-90': activeDropdown === 'laporan_statistik' }">
+                                        <svg width="16" height="16" viewbox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
+                                    </div>
+                                </button>
+                                <ul x-cloak="" x-show="activeDropdown === 'laporan_statistik'" x-collapse=""
+                                    class="sub-menu text-gray-500">
+                                    <li>
+                                        <a href="apps-invoice-list.html">Laporan Karyawan</a>
+                                    </li>
+                                    <li>
+                                        <a href="apps-invoice-preview.html">Laporan Pelatihan</a>
+                                    </li>
+                                    <li>
+                                        <a href="apps-invoice-preview.html">Statistik Karyawan</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
+                        @if (Auth::user()->role == 'admin')
+                            <li class="menu nav-item">
+                                <button type="button" class="nav-link group"
+                                    :class="{ 'active': activeDropdown === 'pengaturan_sistem' }"
+                                    @click="activeDropdown === 'pengaturan_sistem' ? activeDropdown = null : activeDropdown = 'pengaturan_sistem'">
+                                    <div class="flex items-center">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M13 15.4C13 13.3258 13 12.2887 13.659 11.6444C14.318 11 15.3787 11 17.5 11C19.6213 11 20.682 11 21.341 11.6444C22 12.2887 22 13.3258 22 15.4V17.6C22 19.6742 22 20.7113 21.341 21.3556C20.682 22 19.6213 22 17.5 22C15.3787 22 14.318 22 13.659 21.3556C13 20.7113 13 19.6742 13 17.6V15.4Z"
+                                                fill="currentColor" />
+                                            <path
+                                                d="M2 8.6C2 10.6742 2 11.7113 2.65901 12.3556C3.31802 13 4.37868 13 6.5 13C8.62132 13 9.68198 13 10.341 12.3556C11 11.7113 11 10.6742 11 8.6V6.4C11 4.32582 11 3.28873 10.341 2.64437C9.68198 2 8.62132 2 6.5 2C4.37868 2 3.31802 2 2.65901 2.64437C2 3.28873 2 4.32582 2 6.4V8.6Z"
+                                                fill="currentColor" />
+                                            <path
+                                                d="M13 5.5C13 4.4128 13 3.8692 13.1713 3.44041C13.3996 2.86867 13.8376 2.41443 14.389 2.17761C14.8024 2 15.3266 2 16.375 2H18.625C19.6734 2 20.1976 2 20.611 2.17761C21.1624 2.41443 21.6004 2.86867 21.8287 3.44041C22 3.8692 22 4.4128 22 5.5C22 6.5872 22 7.1308 21.8287 7.55959C21.6004 8.13133 21.1624 8.58557 20.611 8.82239C20.1976 9 19.6734 9 18.625 9H16.375C15.3266 9 14.8024 9 14.389 8.82239C13.8376 8.58557 13.3996 8.13133 13.1713 7.55959C13 7.1308 13 6.5872 13 5.5Z"
+                                                fill="currentColor" />
+                                            <path
+                                                d="M2 18.5C2 19.5872 2 20.1308 2.17127 20.5596C2.39963 21.1313 2.83765 21.5856 3.38896 21.8224C3.80245 22 4.32663 22 5.375 22H7.625C8.67337 22 9.19755 22 9.61104 21.8224C10.1624 21.5856 10.6004 21.1313 10.8287 20.5596C11 20.1308 11 19.5872 11 18.5C11 17.4128 11 16.8692 10.8287 16.4404C10.6004 15.8687 10.1624 15.4144 9.61104 15.1776C9.19755 15 8.67337 15 7.625 15H5.375C4.32663 15 3.80245 15 3.38896 15.1776C2.83765 15.4144 2.39963 15.8687 2.17127 16.4404C2 16.8692 2 17.4128 2 18.5Z"
+                                                fill="currentColor" />
+                                        </svg>
 
-                                    <span
-                                        class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Pengaturan
-                                        Sistem</span>
-                                </div>
-                                <div class="rtl:rotate-180"
-                                    :class="{ '!rotate-90': activeDropdown === 'pengaturan_sistem' }">
-                                    <svg width="16" height="16" viewbox="0 0 24 24" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5"
-                                            stroke-linecap="round" stroke-linejoin="round"></path>
-                                    </svg>
-                                </div>
-                            </button>
-                            <ul x-cloak="" x-show="activeDropdown === 'pengaturan_sistem'" x-collapse=""
-                                class="sub-menu text-gray-500">
-                                <li>
-                                    <a href="{{ route('users.index') }}">Manajemen User</a>
-                                </li>
-                                <li>
-                                    <a href="apps-invoice-preview.html">Backup & Restore Data</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+                                        <span
+                                            class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Pengaturan
+                                            Sistem</span>
+                                    </div>
+                                    <div class="rtl:rotate-180"
+                                        :class="{ '!rotate-90': activeDropdown === 'pengaturan_sistem' }">
+                                        <svg width="16" height="16" viewbox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
+                                    </div>
+                                </button>
+                                <ul x-cloak="" x-show="activeDropdown === 'pengaturan_sistem'" x-collapse=""
+                                    class="sub-menu text-gray-500">
+                                    <li>
+                                        <a href="{{ route('users.index') }}">Manajemen User</a>
+                                    </li>
+                                    <li>
+                                        <a href="apps-invoice-preview.html">Backup & Restore Data</a>
+                                    </li>
+                                </ul>
+                        @endif
                 </li>
+            </ul>
+            </li>
             </ul>
         </div>
     </nav>

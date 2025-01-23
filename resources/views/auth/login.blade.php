@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Dashboard Template</title>
+    <title>{{ $title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="favicon.png">
     <link href="css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -77,12 +77,15 @@
                                 <p class="text-base font-bold leading-normal text-white-dark">Masukkan Email & Password
                                     Untuk Login!</p>
                             </div>
-                            <form class="space-y-5 dark:text-white" @submit.prevent="window.location='index.html'">
+                            <form action="{{ route('auth.login') }}" method="POST" class="space-y-5 dark:text-white">
+                                @csrf
                                 <div>
                                     <label for="Email">Email</label>
                                     <div class="relative text-white-dark">
-                                        <input id="Email" type="email" placeholder="Enter Email"
-                                            class="form-input ps-10 placeholder:text-white-dark">
+                                        <input id="Email" type="email" name="email" value="{{ old('email') }}"
+                                            placeholder="Enter Email"
+                                            class="form-input ps-10 placeholder:text-white-dark @error('email') border-red-500 @enderror">
+
                                         <span class="absolute start-4 top-1/2 -translate-y-1/2">
                                             <svg width="18" height="18" viewbox="0 0 18 18" fill="none">
                                                 <path opacity="0.5"
@@ -93,13 +96,19 @@
                                                     fill="currentColor"></path>
                                             </svg>
                                         </span>
+
                                     </div>
+                                    @error('email')
+                                        <span style="color: red;" class="text-sm">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div>
                                     <label for="Password">Password</label>
                                     <div class="relative text-white-dark">
-                                        <input id="Password" type="password" placeholder="Enter Password"
-                                            class="form-input ps-10 placeholder:text-white-dark">
+                                        <input id="Password" type="password" name="password"
+                                            placeholder="Enter Password"
+                                            class="form-input ps-10 placeholder:text-white-dark @error('password') border-red-500 @enderror">
+
                                         <span class="absolute start-4 top-1/2 -translate-y-1/2">
                                             <svg width="18" height="18" viewbox="0 0 18 18" fill="none">
                                                 <path opacity="0.5"
@@ -119,7 +128,11 @@
                                                     fill="currentColor"></path>
                                             </svg>
                                         </span>
+
                                     </div>
+                                    @error('password')
+                                        <div style="color: red; font-size: 0.875rem;">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <button type="submit"
                                     class="btn btn-gradient !mt-6 w-full border-0 uppercase shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]">

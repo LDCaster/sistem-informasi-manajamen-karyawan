@@ -96,11 +96,12 @@
                                 </div>
                                 <div class="truncate ltr:pl-4 rtl:pr-4">
                                     <h4 class="text-base">
-                                        SIMK<span
-                                            class="rounded bg-success-light px-1 text-xs text-success ltr:ml-2 rtl:ml-2">Admin</span>
+                                        {{ ucfirst(Auth::user()->name) }} <span
+                                            class="rounded bg-success-light px-1 text-xs text-success ltr:ml-2 rtl:ml-2">
+                                            {{ ucfirst(Auth::user()->role) }} </span>
                                     </h4>
                                     <a class="text-black/60 hover:text-primary dark:text-dark-light/60 dark:hover:text-white"
-                                        href="javascript:;">starcodekh@gmail.com</a>
+                                        href="javascript:;"> {{ Auth::user()->email }}</a>
                                 </div>
                             </div>
                         </li>
@@ -117,7 +118,8 @@
                                 Profile</a>
                         </li>
                         <li class="border-t border-white-light dark:border-white-light/10">
-                            <a href="auth-boxed-signin.html" class="!py-3 text-danger" @click="toggle">
+                            <a href="javascript:void(0);" class="!py-3 text-danger"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <svg class="h-4.5 w-4.5 shrink-0 rotate-90 ltr:mr-2 rtl:ml-2" width="18"
                                     height="18" viewbox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -129,7 +131,13 @@
                                 </svg>
                                 Sign Out
                             </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                style="display: none;">
+                                @csrf
+                            </form>
                         </li>
+
                     </ul>
                 </div>
             </div>
