@@ -38,35 +38,39 @@
                     <legend class="text-xl text-primary">Informasi Pribadi</legend>
                     <div class="grid grid-cols-3 gap-4">
                         <div class="mb-3">
-                            <label for="nik" class="block">NIK</label>
+                            <label for="nik" class="block">NIK <span style="color: red; font-size: 12px;">*Harus
+                                    Diisi</span></label>
                             <input id="nik" type="text" name="nik" class="form-input"
                                 placeholder="Masukkan NIK" />
                         </div>
                         <div class="mb-3">
-                            <label for="nip" class="block">NIP</label>
+                            <label for="nip" class="block">NIP <span style="color: red; font-size: 12px;">*Harus
+                                    Diisi</span></label>
                             <input id="nip" type="text" name="nip" class="form-input"
                                 placeholder="Masukkan NIP" />
                         </div>
                         <div class="mb-3">
-                            <label for="nama" class="block">Nama</label>
+                            <label for="nama" class="block">Nama <span style="color: red; font-size: 12px;">*Harus
+                                    Diisi</span></label>
                             <input id="nama" type="text" name="nama" class="form-input"
                                 placeholder="Masukkan Nama" />
                         </div>
                     </div>
                     <div class="grid grid-cols-3 gap-4">
                         <div class="mb-3">
-                            <label for="no_telepon" class="block">No Telp.</label>
+                            <label for="no_telepon" class="block">No Telp. <span
+                                    style="color: red; font-size: 12px;">*Harus
+                                    Diisi</span></label>
                             <input id="no_telepon" type="text" name="no_telepon" class="form-input"
                                 placeholder="Masukkan No Telp" />
                         </div>
                         <div class="mb-3">
-                            <label for="status_perkawinan" class="block">Status Perkawinan</label>
+                            <label for="status_perkawinan" class="block">Status Perkawinan <span
+                                    style="color: red; font-size: 12px;">*Harus
+                                    Diisi</span></label>
                             <!-- basic -->
                             <select class="selectize" id="status_perkawinan" name="status_perkawinan">
-                                <option selected value="Kawin">Kawin</option>
-                                <option value="Belum Kawin">Belum Kawin</option>
-                                <option value="Cerai Hidup">Cerai Hidup</option>
-                                <option value="Cerai Mati">Cerai Mati</option>
+                                <option selected value="Belum Menikah">Belum Menikah</option>
                                 <option value="Menikah">Menikah</option>
                             </select>
                         </div>
@@ -78,7 +82,9 @@
                     </div>
                     <div class="grid grid-cols-3 gap-4">
                         <div class="mb-3">
-                            <label for="jenis_kelamin" class="block">Jenis Kelamin</label>
+                            <label for="jenis_kelamin" class="block">Jenis Kelamin <span
+                                    style="color: red; font-size: 12px;">*Harus
+                                    Diisi</span></label>
                             <!-- basic -->
                             <select class="selectize" id="jenis_kelamin" name="jenis_kelamin">
                                 <option selected value="L">Laki-Laki</option>
@@ -86,19 +92,25 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="tempat_lahir" class="block">Tempat Lahir</label>
+                            <label for="tempat_lahir" class="block">Tempat Lahir <span
+                                    style="color: red; font-size: 12px;">*Harus
+                                    Diisi</span></label>
                             <input id="tempat_lahir" type="text" name="tempat_lahir" class="form-input"
                                 placeholder="Masukkan Tempat Lahir" />
                         </div>
                         <div class="mb-3">
-                            <label for="Tanggal Lahir" class="block">Tanggal Lahir</label>
+                            <label for="Tanggal Lahir" class="block">Tanggal Lahir <span
+                                    style="color: red; font-size: 12px;">*Harus
+                                    Diisi</span></label>
                             <input id="Tanggal Lahir" type="date" name="tanggal_lahir" class="form-input"
                                 placeholder="Masukkan Tanggal Lahir" />
                         </div>
                     </div>
                     <div class="grid grid-cols-1 gap-4">
                         <div class="mb-3">
-                            <label for="Alamat Rumah" class="block">Alamat Rumah</label>
+                            <label for="Alamat Rumah" class="block">Alamat Rumah <span
+                                    style="color: red; font-size: 12px;">*Harus
+                                    Diisi</span></label>
                             <textarea rows="2" class="form-textarea ltr:rounded-l-none rtl:rounded-r-none" id="alamat_rumah"
                                 name="alamat_rumah"></textarea>
                         </div>
@@ -109,34 +121,44 @@
                     <legend class="text-xl text-primary">Karir</legend>
                     <div class="grid grid-cols-3 gap-4">
                         <div class="mb-3">
-                            <label for="sbu" class="block">SBU</label>
+                            <label for="sbu" class="block">SBU <span style="color: red; font-size: 12px;">*Harus
+                                    Diisi</span></label>
                             <input id="sbu" type="text" name="sbu" class="form-input"
                                 placeholder="Masukkan sbu" />
                         </div>
                         <div class="mb-3">
-                            <label for="bagian" class="block">Bagian</label>
+                            <label for="bagian" class="block">Bagian <span style="color: red; font-size: 12px;">*Harus
+                                    Diisi</span></label>
                             <input id="bagian" type="text" name="bagian" class="form-input"
                                 placeholder="Masukkan Bagian" />
                         </div>
                         <div class="mb-3">
-                            <label for="departemen" class="block">Departemen</label>
+                            <label for="departemen" class="block">Departemen <span
+                                    style="color: red; font-size: 12px;">*Harus
+                                    Diisi</span></label>
                             <input id="departemen" type="text" name="departemen" class="form-input"
                                 placeholder="Masukkan Departemen" />
                         </div>
                     </div>
                     <div class="grid grid-cols-3 gap-4">
                         <div class="mb-3">
-                            <label for="lokasi_kerja" class="block">Lokasi Kerja</label>
+                            <label for="lokasi_kerja" class="block">Lokasi Kerja <span
+                                    style="color: red; font-size: 12px;">*Harus
+                                    Diisi</span></label>
                             <input id="lokasi_kerja" type="text" name="lokasi_kerja" class="form-input"
                                 placeholder="Masukkan Lokasi Kerja" />
                         </div>
                         <div class="mb-3">
-                            <label for="tanggal_masuk" class="block">Tanggal Masuk</label>
+                            <label for="tanggal_masuk" class="block">Tanggal Masuk <span
+                                    style="color: red; font-size: 12px;">*Harus
+                                    Diisi</span></label>
                             <input id="tanggal_masuk" type="date" name="tanggal_masuk" class="form-input"
                                 placeholder="Masukkan Tanggal Masuk" />
                         </div>
                         <div class="mb-3">
-                            <label for="status_karyawan" class="block">Status Karyawan</label>
+                            <label for="status_karyawan" class="block">Status Karyawan <span
+                                    style="color: red; font-size: 12px;">*Harus
+                                    Diisi</span></label>
                             <!-- basic -->
                             <select class="selectize" id="status_karyawan" name="status_karyawan">
                                 <option selected value="Aktif">Aktif</option>
@@ -151,7 +173,9 @@
                     <legend class="text-xl text-primary">Kontrak Kerja</legend>
                     <div class="grid grid-cols-2 gap-4">
                         <div class="mb-3">
-                            <label for="jenis_kontrak" class="block">Jenis Kontrak</label>
+                            <label for="jenis_kontrak" class="block">Jenis Kontrak <span
+                                    style="color: red; font-size: 12px;">*Harus
+                                    Diisi</span></label>
                             <!-- basic -->
                             <select class="selectize" id="jenis_kontrak" name="jenis_kontrak">
                                 <option selected value="PKWT">PKWT</option>
@@ -165,12 +189,16 @@
                                 class="form-input" placeholder="Masukkan Status Kontrak Kerja" />
                         </div>
                         <div class="mb-3">
-                            <label for="tanggal_awal_kontrak_lanjutan" class="block">Tanggal Awal Kontrak Kerja</label>
+                            <label for="tanggal_awal_kontrak_lanjutan" class="block">Tanggal Awal Kontrak Kerja <span
+                                    style="color: red; font-size: 12px;">*Harus
+                                    Diisi</span></label>
                             <input id="tanggal_awal_kontrak_lanjutan" type="date" name="tanggal_awal_kontrak_lanjutan"
                                 class="form-input" placeholder="Masukkan Awal Kontrak Kerja" />
                         </div>
                         <div class="mb-3">
-                            <label for="tanggal_akhir_kontrak_lanjutan" class="block">Tanggal Akhir Kontrak Kerja</label>
+                            <label for="tanggal_akhir_kontrak_lanjutan" class="block">Tanggal Akhir Kontrak Kerja <span
+                                    style="color: red; font-size: 12px;">*Harus
+                                    Diisi</span></label>
                             <input id="tanggal_akhir_kontrak_lanjutan" type="date"
                                 name="tanggal_akhir_kontrak_lanjutan" class="form-input"
                                 placeholder="Masukkan Akhir Kontrak Kerja" />
@@ -204,17 +232,23 @@
                     <legend class="text-xl text-primary">Jaminan Sosial</legend>
                     <div class="grid grid-cols-3 gap-4">
                         <div class="mb-3">
-                            <label for="no_npwp" class="block">NO NPWP</label>
+                            <label for="no_npwp" class="block">NO NPWP <span
+                                    style="color: red; font-size: 12px;">*Harus
+                                    Diisi</span></label>
                             <input id="no_npwp" type="text" name="no_npwp" class="form-input"
                                 placeholder="Masukkan NO NPWP" />
                         </div>
                         <div class="mb-3">
-                            <label for="no_bpjs_kesehatan" class="block">NO BPJS Kesehatan</label>
+                            <label for="no_bpjs_kesehatan" class="block">NO BPJS Kesehatan <span
+                                    style="color: red; font-size: 12px;">*Harus
+                                    Diisi</span></label>
                             <input id="no_bpjs_kesehatan" type="text" name="no_bpjs_kesehatan" class="form-input"
                                 placeholder="Masukkan NO BPJS Kesehatan" />
                         </div>
                         <div class="mb-3">
-                            <label for="no_bpjs_tenagakerja" class="block">NO BPJS Tenagakerja</label>
+                            <label for="no_bpjs_tenagakerja" class="block">NO BPJS Tenagakerja <span
+                                    style="color: red; font-size: 12px;">*Harus
+                                    Diisi</span></label>
                             <input id="no_bpjs_tenagakerja" type="text" name="no_bpjs_tenagakerja" class="form-input"
                                 placeholder="Masukkan NO BPJS Tenagakerja" />
                         </div>
@@ -268,12 +302,16 @@
                     <legend class="text-xl text-primary">Data MCU</legend>
                     <div class="grid grid-cols-2 gap-4">
                         <div class="mb-3">
-                            <label for="mcu_terakhir" class="block">MCU Terakhir</label>
+                            <label for="mcu_terakhir" class="block">MCU Terakhir <span
+                                    style="color: red; font-size: 12px;">*Harus
+                                    Diisi</span></label>
                             <input id="mcu_terakhir" type="date" name="mcu_terakhir" class="form-input"
                                 placeholder="Masukkan MCU Terakhir" />
                         </div>
                         <div class="mb-3">
-                            <label for="nama_bank" class="block">Catatan Dokter</label>
+                            <label for="nama_bank" class="block">Catatan Dokter <span
+                                    style="color: red; font-size: 12px;">*Harus
+                                    Diisi</span></label>
                             <textarea rows="2" class="form-textarea ltr:rounded-l-none rtl:rounded-r-none" id="catatan_dokter"
                                 name="catatan_dokter"></textarea>
                         </div>

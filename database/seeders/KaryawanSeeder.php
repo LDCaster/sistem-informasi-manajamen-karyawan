@@ -51,7 +51,7 @@ class KaryawanSeeder extends Seeder
                 'tanggal_lahir' => '1988-08-08',
                 'jenis_kelamin' => 'P',
                 'pendidikan' => 'D3 Akuntansi',
-                'status_perkawinan' => 'Cerai Hidup',
+                'status_perkawinan' => 'Belum Kawin',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

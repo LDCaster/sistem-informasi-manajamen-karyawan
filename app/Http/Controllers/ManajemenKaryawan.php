@@ -50,7 +50,7 @@ class ManajemenKaryawan extends Controller
             'nip' => 'nullable|numeric',
             'nama' => 'required|string|max:255',
             'no_telepon' => 'required|numeric',
-            'status_perkawinan' => 'required|in:Kawin,Belum Kawin,Cerai Hidup,Cerai Mati,Menikah',
+            'status_perkawinan' => 'required|in:Belum Menikah,Menikah',
             'pendidikan' => 'required|string|max:100',
             'jenis_kelamin' => 'required|in:L,P',
             'tempat_lahir' => 'required|string|max:255',
