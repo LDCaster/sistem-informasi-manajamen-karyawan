@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('resignasi_karyawan', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_karyawan')->constrained('karyawan')->onDelete('cascade');
-            $table->date('tanggal_keluar');
-            $table->text('keterangan_keluar');
+            $table->date('tanggal_keluar')->nullable();
+            $table->text('keterangan_keluar')->nullable();
             $table->timestamps();
         });
     }

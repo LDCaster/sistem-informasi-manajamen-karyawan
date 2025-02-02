@@ -23,5 +23,12 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersSeeder::class);
         $this->call(PekerjaanKaryawanSeeder::class);
         $this->call(ResignasiKaryawanSeeder::class);
+        $this->call(KontrakKerjaKaryawanSeeder::class);
+        $this->call(PelatihanKaryawanSeeder::class);
+        $this->call(PajakAsuransiKaryawanSeeder::class);
+        $this->call(BankSimKaryawanSeeder::class);
+        $this->call(MCUKaryawanSeeder::class);
+        $this->call(CatatanPentingKaryawanSeeder::class);
+        $this->call(KontakDaruratKaryawanSeeder::class);
     }
 }

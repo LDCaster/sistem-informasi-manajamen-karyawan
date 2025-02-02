@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('kontrak_kerja_karyawan', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_karyawan')->constrained('karyawan')->onDelete('cascade');
-            $table->enum('jenis_kontrak', ['PKWT', 'PKWTT', 'PKWT/PKWTT']);
+            $table->enum('jenis_kontrak', ['PKWT', 'PKWTT', 'PKWT/PKWTT'])->nullable();
             $table->integer('status_kontrak_lanjutan')->nullable();
             $table->date('tanggal_awal_kontrak_lanjutan')->nullable();
             $table->date('tanggal_akhir_kontrak_lanjutan')->nullable();

@@ -157,8 +157,10 @@
                                 @endif
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('resignasi-karyawan.index') }}" class="group">
+                        <li class="menu nav-item">
+                            <button type="button" class="nav-link group"
+                                :class="{ 'active': activeDropdown === 'resignasi_karyawan' }"
+                                @click="activeDropdown === 'resignasi_karyawan' ? activeDropdown = null : activeDropdown = 'resignasi_karyawan'">
                                 <div class="flex items-center">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -170,8 +172,29 @@
                                         class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Resignasi
                                         Karyawan</span>
                                 </div>
-                            </a>
+                                <div class="rtl:rotate-180"
+                                    :class="{ '!rotate-90': activeDropdown === 'resignasi_karyawan' }">
+                                    <svg width="16" height="16" viewbox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>
+                                </div>
+                            </button>
+                            <ul x-cloak="" x-show="activeDropdown === 'resignasi_karyawan'" x-collapse=""
+                                class="sub-menu text-gray-500">
+                                <li>
+                                    <a href="{{ route('resignasi-karyawan.index') }}">Data Resignasi</a>
+                                </li>
+                                @if (Auth::user()->role == 'admin' || Auth::user()->role == 'hrd')
+                                    <li>
+                                        <a href="{{ route('resignasi-karyawan.create') }}">Tambah Resignasi
+                                            Karyawan</a>
+                                    </li>
+                                @endif
+                            </ul>
                         </li>
+
                         @if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff')
                             <li class="menu nav-item">
                                 <button type="button" class="nav-link group"
@@ -200,7 +223,7 @@
                                 <ul x-cloak="" x-show="activeDropdown === 'laporan_statistik'" x-collapse=""
                                     class="sub-menu text-gray-500">
                                     <li>
-                                        <a href="apps-invoice-list.html">Laporan Karyawan</a>
+                                        <a href="{{ route('laporan-karyawan.index') }}">Laporan Karyawan</a>
                                     </li>
                                     <li>
                                         <a href="apps-invoice-preview.html">Laporan Pelatihan</a>

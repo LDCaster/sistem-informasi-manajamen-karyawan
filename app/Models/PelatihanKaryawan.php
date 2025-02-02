@@ -14,7 +14,6 @@ class PelatihanKaryawan extends Model
         'id_karyawan',
         'nama_pelatihan',
         'tanggal_pelatihan',
-        'tanggal_pelatihan',
         'file_pelatihan',
     ];
 

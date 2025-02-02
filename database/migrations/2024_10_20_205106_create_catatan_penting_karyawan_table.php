@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('catatan_penting_karyawan', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_karyawan')->constrained('karyawan')->onDelete('cascade');
-            $table->date('tanggal_catatan');
-            $table->text('kasus_catatan');
+            $table->date('tanggal_catatan')->nullable();
+            $table->text('kasus_catatan')->nullable();
             $table->text('keterangan_catatan')->nullable();
             $table->timestamps();
         });

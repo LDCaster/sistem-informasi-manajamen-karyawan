@@ -13,6 +13,7 @@ use App\Models\PekerjaanKaryawan;
 use App\Models\PelatihanKaryawan;
 use App\Models\ResignasiKaryawan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ManajemenKaryawan extends Controller
 {
@@ -51,7 +52,7 @@ class ManajemenKaryawan extends Controller
             'nama' => 'required|string|max:255',
             'no_telepon' => 'required|numeric',
             'status_perkawinan' => 'required|in:Belum Menikah,Menikah',
-            'pendidikan' => 'required|string|max:100',
+            'pendidikan' => 'nullable|string|max:100',
             'jenis_kelamin' => 'required|in:L,P',
             'tempat_lahir' => 'required|string|max:255',
             'tanggal_lahir' => 'required|date',
@@ -78,8 +79,8 @@ class ManajemenKaryawan extends Controller
 
         // Validasi data pelatihan
         $validatedTrainingData = $request->validate([
-            'nama_pelatihan' => 'required',
-            'tanggal_pelatihan' => 'required|date',
+            'nama_pelatihan' => 'nullable',
+            'tanggal_pelatihan' => 'nullable|date',
             'file_pelatihan' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
         ]);
 
@@ -227,24 +228,87 @@ class ManajemenKaryawan extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $karyawan = Karyawan::with('editpekerjaanKaryawan', 'editpelatihanKaryawan', 'editbankSIM', 'editMCU', 'editcatatanPenting', 'editkontakDarurat')->findOrFail($id);
+        $title = "Edit Karyawan";
+        return view('pages.manajamen_karyawan.edit_karyawan', compact('karyawan', 'title'));
     }
+
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        // Validasi data karyawan
+        $validatedData = $request->validate([
+            'nik' => "required|numeric|unique:karyawan,nik,$id",
+            'nip' => 'nullable|numeric',
+            'nama' => 'required|string|max:255',
+            'no_telepon' => 'required|numeric',
+            'status_perkawinan' => 'required|in:Belum Menikah,Menikah',
+            'pendidikan' => 'nullable|string|max:100',
+            'jenis_kelamin' => 'required|in:L,P',
+            'tempat_lahir' => 'required|string|max:255',
+            'tanggal_lahir' => 'required|date',
+            'alamat_rumah' => 'required|string|max:500',
+        ]);
+
+        // Ambil data karyawan
+        $karyawan = Karyawan::findOrFail($id);
+        $karyawan->update($validatedData);
+
+        // Update data pekerjaan karyawan
+        PekerjaanKaryawan::updateOrCreate(
+            ['id_karyawan' => $id],
+            $request->only(['sbu', 'bagian', 'departemen', 'lokasi_kerja', 'tanggal_masuk', 'status_karyawan'])
+        );
+
+        // Update data pajak asuransi
+        PajakAsuransi::updateOrCreate(
+            ['id_karyawan' => $id],
+            $request->only(['no_npwp', 'no_bpjs_kesehatan', 'no_bpjs_tenagakerja'])
+        );
+
+        // Update data bank dan SIM
+        BankSIM::updateOrCreate(
+            ['id_karyawan' => $id],
+            $request->only(['no_rekening_bank', 'nama_bank', 'no_sim', 'sim_expired', 'no_simper', 'simper_expired'])
+        );
+
+        // Update data MCU
+        MCUKaryawan::updateOrCreate(
+            ['id_karyawan' => $id],
+            $request->only(['mcu_terakhir', 'catatan_dokter'])
+        );
+
+        // Update data catatan penting karyawan
+        CatatanPentingKaryawan::updateOrCreate(
+            ['id_karyawan' => $id],
+            $request->only(['tanggal_catatan', 'kasus_catatan'])
+        );
+
+        // Update data kontak darurat
+        KontakDarurat::updateOrCreate(
+            ['id_karyawan' => $id],
+            $request->only(['nama_kontak_darurat', 'no_telepon_kontak_darurat'])
+        );
+
+        // Redirect dengan pesan sukses
+        return redirect()->route('karyawan.index')->with('success', 'Data karyawan berhasil diperbarui.');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $karyawan = Karyawan::findOrFail($id);
+        $karyawan->delete();
+
+        return response()->json(['message' => 'Karyawan berhasil dihapus']);
     }
 }

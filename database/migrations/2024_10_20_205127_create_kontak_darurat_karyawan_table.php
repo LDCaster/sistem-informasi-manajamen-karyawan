@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('kontak_darurat_karyawan', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_karyawan')->constrained('karyawan')->onDelete('cascade');
-            $table->string('nama_kontak_darurat', 100);
+            $table->string('nama_kontak_darurat', 100)->nullable();
             // $table->string('hubungan_kontak_darurat', 50);
-            $table->string('no_telepon_kontak_darurat', 15);
+            $table->string('no_telepon_kontak_darurat', 15)->nullable();
             $table->timestamps();
         });
     }

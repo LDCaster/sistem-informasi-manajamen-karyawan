@@ -28,4 +28,42 @@ class Karyawan extends Model
     {
         return $this->hasMany(PekerjaanKaryawan::class, 'id_karyawan');
     }
+
+
+    public function editpekerjaanKaryawan()
+    {
+        return $this->hasOne(PekerjaanKaryawan::class, 'id_karyawan');
+    }
+    public function editkontrakKerja()
+    {
+        return $this->hasOne(KontrakKerja::class, 'id_karyawan');
+    }
+    public function editpelatihanKaryawan()
+    {
+        return $this->hasOne(PelatihanKaryawan::class, 'id_karyawan');
+    }
+    public function editpajakAsuransi()
+    {
+        return $this->hasOne(PajakAsuransi::class, 'id_karyawan');
+    }
+    public function editbankSIM()
+    {
+        return $this->hasOne(BankSIM::class, 'id_karyawan');
+    }
+    public function editMCU()
+    {
+        return $this->hasOne(MCUKaryawan::class, 'id_karyawan');
+    }
+    public function editcatatanPenting()
+    {
+        return $this->hasOne(CatatanPentingKaryawan::class, 'id_karyawan');
+    }
+    public function editkontakDarurat()
+    {
+        return $this->hasOne(KontakDarurat::class, 'id_karyawan');
+    }
+    public function editResignasi()
+    {
+        return $this->hasOne(ResignasiKaryawan::class, 'id_karyawan');
+    }
 }

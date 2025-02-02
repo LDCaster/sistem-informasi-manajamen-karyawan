@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('pelatihan_karyawan', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_karyawan')->constrained('karyawan')->onDelete('cascade');
-            $table->text('nama_pelatihan');
-            $table->date('tanggal_pelatihan');
+            $table->text('nama_pelatihan')->nullable();
+            $table->date('tanggal_pelatihan')->nullable();
             $table->string('file_pelatihan')->nullable(); // Add this line to store file path
             $table->timestamps();
         });

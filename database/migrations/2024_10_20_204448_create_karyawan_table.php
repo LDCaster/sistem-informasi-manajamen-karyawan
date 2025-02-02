@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('tempat_lahir', 50);
             $table->date('tanggal_lahir');
             $table->enum('jenis_kelamin', ['L', 'P']);
-            $table->string('pendidikan', 50);
+            $table->string('pendidikan', 50)->nullable();
             $table->enum('status_perkawinan', ['Belum Menikah', 'Menikah']);
             $table->timestamps();
         });
