@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BackupController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KontrakKerja;
 use App\Http\Controllers\LaporanKaryawanController;
@@ -26,5 +27,10 @@ Route::resource('/resignasi-karyawan', ResignasiKaryawan::class)->middleware(Aut
 Route::resource('/users', ManajemenUsers::class)->middleware(AuthLogin::class);
 
 Route::resource('/laporan-karyawan', LaporanKaryawanController::class)->middleware(AuthLogin::class);
+Route::get('/export-karyawan', [LaporanKaryawanController::class, 'export'])->name('export-karyawan');
+
 // Route untuk profile
 Route::get('/profile', [Users::class, 'profile'])->name('profile.index');
+
+
+Route::get('/backup-database', [BackupController::class, 'backupDatabase'])->name('backup.database');

@@ -14,16 +14,16 @@ return new class extends Migration
 
         Schema::create('karyawan', function (Blueprint $table) {
             $table->id();
-            $table->string('nik', 20);
-            $table->string('nip', 20);
-            $table->string('nama', 100);
-            $table->text('alamat_rumah');
-            $table->string('no_telepon', 15);
-            $table->string('tempat_lahir', 50);
-            $table->date('tanggal_lahir');
-            $table->enum('jenis_kelamin', ['L', 'P']);
-            $table->string('pendidikan', 50)->nullable();
-            $table->enum('status_perkawinan', ['Belum Menikah', 'Menikah']);
+            $table->string('nik', 20)->nullable();
+            $table->string('nip', 20)->nullable();
+            $table->string('nama', 100)->nullable();
+            $table->text('alamat_rumah')->nullable();
+            $table->string('no_telepon', 15)->nullable();
+            $table->string('tempat_lahir', 50)->nullable();
+            $table->date('tanggal_lahir')->nullable();
+            $table->enum('jenis_kelamin', ['L', 'P'])->nullable();
+            $table->string('pendidikan', 50)->nullable()->nullable();
+            $table->enum('status_perkawinan', ['Belum Menikah', 'Menikah'])->nullable();
             $table->timestamps();
         });
     }

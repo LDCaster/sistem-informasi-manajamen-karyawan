@@ -17,6 +17,7 @@ class CatatanPentingKaryawan extends Model
         'id_karyawan',
         'tanggal_catatan',
         'kasus_catatan',
+        'keterangan_catatan',
     ];
 
     // Define the relationship with the Karyawan model

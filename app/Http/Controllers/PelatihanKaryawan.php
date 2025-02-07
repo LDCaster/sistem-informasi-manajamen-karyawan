@@ -41,8 +41,8 @@ class PelatihanKaryawan extends Controller
         // Validasi data
         $validatedData = $request->validate([
             'id_karyawan' => 'required',
-            'nama_pelatihan' => 'required|string|max:255',
-            'tanggal_pelatihan' => 'required|date',
+            'nama_pelatihan' => 'nullable|string|max:255',
+            'tanggal_pelatihan' => 'nullable|date',
             'file_pelatihan' => 'nullable|file|mimes:pdf,doc,docx,png,jpg,jpeg|max:2048', // Sesuaikan jenis file
         ]);
 
@@ -96,8 +96,8 @@ class PelatihanKaryawan extends Controller
     {
         // Validasi data
         $validatedData = $request->validate([
-            'nama_pelatihan' => 'required|string|max:255',
-            'tanggal_pelatihan' => 'required|date',
+            'nama_pelatihan' => 'nullable|string|max:255',
+            'tanggal_pelatihan' => 'nullable|date',
             'file_pelatihan' => 'nullable|file|mimes:pdf,doc,docx,png,jpg,jpeg|max:2048',
         ]);
 

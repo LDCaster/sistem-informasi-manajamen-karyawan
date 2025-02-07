@@ -66,4 +66,13 @@ class Karyawan extends Model
     {
         return $this->hasOne(ResignasiKaryawan::class, 'id_karyawan');
     }
+    public function editUser()
+    {
+        return $this->hasOne(User::class, 'id_karyawan');
+    }
+
+    public function excelpelatihan()
+    {
+        return $this->hasMany(PelatihanKaryawan::class, 'id_karyawan');
+    }
 }

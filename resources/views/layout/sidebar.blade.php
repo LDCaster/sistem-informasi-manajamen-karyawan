@@ -23,7 +23,7 @@
             <ul class="perfect-scrollbar relative h-[calc(100vh-80px)] space-y-0.5 overflow-y-auto overflow-x-hidden p-4 py-0 font-semibold"
                 x-data="{ activeDropdown: 'dashboard' }">
                 <li class="nav-item">
-                    <a href="apps-mailbox.html" class="group">
+                    <a href="/" class="group">
                         <div class="flex items-center">
                             <svg class="shrink-0 group-hover:!text-primary" width="20" height="20"
                                 viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -225,12 +225,12 @@
                                     <li>
                                         <a href="{{ route('laporan-karyawan.index') }}">Laporan Karyawan</a>
                                     </li>
-                                    <li>
+                                    {{-- <li>
                                         <a href="apps-invoice-preview.html">Laporan Pelatihan</a>
-                                    </li>
-                                    <li>
+                                    </li> --}}
+                                    {{-- <li>
                                         <a href="apps-invoice-preview.html">Statistik Karyawan</a>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </li>
                         @endif
@@ -271,11 +271,11 @@
                                 </button>
                                 <ul x-cloak="" x-show="activeDropdown === 'pengaturan_sistem'" x-collapse=""
                                     class="sub-menu text-gray-500">
-                                    <li>
+                                    {{-- <li>
                                         <a href="{{ route('users.index') }}">Manajemen User</a>
-                                    </li>
+                                    </li> --}}
                                     <li>
-                                        <a href="apps-invoice-preview.html">Backup & Restore Data</a>
+                                        <a href="{{ route('backup.database') }}">Backup & Restore Data</a>
                                     </li>
                                 </ul>
                         @endif
