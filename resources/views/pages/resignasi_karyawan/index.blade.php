@@ -99,23 +99,29 @@
     <!-- end main content section -->
     <script src="{{ asset('assets/js/simple-datatables.js') }}"></script>
     <script>
-        function deleteResignasi(id) {
-            if (confirm("Apakah yakin ingin menghapus data ini?")) {
-                fetch(`/resignasi-karyawan/${id}`, {
-                        method: 'DELETE',
-                        headers: {
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                            'Content-Type': 'application/json'
-                        }
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        alert(data.message);
-                        location.reload(); // Refresh halaman setelah hapus
-                    })
-                    .catch(error => console.error('Error:', error));
+        document.addEventListener("click", function(event) {
+            if (event.target.closest("button[x-tooltip='Delete']")) {
+                const row = event.target.closest("tr");
+                const karyawanId = row.cells[1].innerText; // Ambil ID dari kolom ke-2
+
+                if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
+                    fetch(`/resignasi-karyawan/${karyawanId}`, {
+                            method: "DELETE",
+                            headers: {
+                                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute(
+                                    "content"),
+                                "Content-Type": "application/json",
+                            },
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            alert(data.message);
+                            row.remove(); // Hapus baris dari tabel setelah berhasil dihapus
+                        })
+                        .catch(error => console.error("Error:", error));
+                }
             }
-        }
+        });
     </script>
     <script>
         document.addEventListener('alpine:init', () => {

@@ -40,7 +40,19 @@ class ResignasiKaryawan extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'id_karyawan' => 'required|exists:karyawan,id',
+            'tanggal_keluar' => 'required|date',
+            'keterangan_keluar' => 'nullable|string|max:255',
+        ]);
+
+        ModelsResignasiKaryawan::create([
+            'id_karyawan' => $request->id_karyawan,
+            'tanggal_keluar' => $request->tanggal_keluar,
+            'keterangan_keluar' => $request->keterangan_keluar,
+        ]);
+
+        return redirect()->route('resignasi-karyawan.index')->with('success', 'Data resignasi berhasil ditambahkan.');
     }
 
     /**

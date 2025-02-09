@@ -271,9 +271,9 @@
                                 </button>
                                 <ul x-cloak="" x-show="activeDropdown === 'pengaturan_sistem'" x-collapse=""
                                     class="sub-menu text-gray-500">
-                                    {{-- <li>
+                                    <li>
                                         <a href="{{ route('users.index') }}">Manajemen User</a>
-                                    </li> --}}
+                                    </li>
                                     <li>
                                         <a href="{{ route('backup.database') }}">Backup & Restore Data</a>
                                     </li>

@@ -18,7 +18,6 @@ class UsersSeeder extends Seeder
         DB::table('users')->insert([
             [
                 'id_karyawan' => 1, // ID Karyawan terkait
-                'name' => 'John Doe',
                 'email' => 'admin@example.com',
                 'email_verified_at' => now(),
                 'password' => Hash::make('password123'),
@@ -30,7 +29,6 @@ class UsersSeeder extends Seeder
             ],
             [
                 'id_karyawan' => 2, // ID Karyawan terkait
-                'name' => 'Jane Smith',
                 'email' => 'hrd@example.com',
                 'email_verified_at' => now(),
                 'password' => Hash::make('password123'),
@@ -42,7 +40,6 @@ class UsersSeeder extends Seeder
             ],
             [
                 'id_karyawan' => 3, // ID Karyawan terkait
-                'name' => 'Alex Brown',
                 'email' => 'staff@example.com',
                 'email_verified_at' => now(),
                 'password' => Hash::make('password123'),
